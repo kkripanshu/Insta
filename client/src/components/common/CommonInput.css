@@ -1,0 +1,64 @@
+
+
+.custom-input:hover {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.custom-input:focus,
+.custom-input.ant-input-focused {
+  border-color: #cbd3ff !important;
+  outline: none !important;
+}
+
+/* Password field focus states */
+.ant-input-password.custom-input:focus {
+  border-color: #cbd3ff !important;
+  outline: none !important;
+}
+
+.ant-input-password.custom-input.ant-input-focused {
+  border-color: #cbd3ff !important;
+  outline: none !important;
+}
+
+.custom-input.ant-input::placeholder {
+    color: #9ca3af;
+    opacity: 1;
+}
+
+.custom-input::placeholder {
+    color: #9ca3af;
+    opacity: 1;
+    font-weight: 600;
+}
+
+.custom-input::-webkit-input-placeholder {
+    color: #9ca3af;
+    opacity: 1;
+    font-weight: 600;
+}
+
+.custom-input::-moz-placeholder {
+    color: #9ca3af;
+    opacity: 1;
+    font-weight: 600;
+}
+
+.custom-input:-ms-input-placeholder {
+    color: #9ca3af;
+    opacity: 1;
+    font-weight: 600;
+}
+
+/* Disable autofill styling */
+.custom-input:-webkit-autofill,
+.custom-input:-webkit-autofill:hover,
+.custom-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+/* Hide autofill dropdown */
+.custom-input::-webkit-contacts-auto-fill-button {
+  display: none !important;
+}

@@ -1,0 +1,21 @@
+/* Global styles placeholder */
+:root {
+  color: #111827;
+  background: #f8fafc;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.createModal .ant-modal-container {
+  /* background: transparent; */
+  border: none;
+  padding: 0;
+  border-radius: 32px;
+}
+
+.createModal .ant-modal-body {
+  padding: 0;
+}
