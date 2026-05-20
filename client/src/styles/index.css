@@ -9,11 +9,21 @@ body {
   margin: 0;
 }
 
+.createModal .ant-modal-wrap,
+.createModal .ant-modal,
+.createModal .ant-modal-content,
 .createModal .ant-modal-container {
-  /* background: transparent; */
-  border: none;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
   padding: 0;
-  border-radius: 32px;
+  border-radius: 32px !important;
+}
+
+.createModal .ant-modal-header,
+.createModal .ant-modal-body,
+.createModal .ant-modal-content {
+  border: none !important;
 }
 
 .createModal .ant-modal-body {

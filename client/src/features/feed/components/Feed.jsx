@@ -64,6 +64,10 @@ const Feed = () => {
       alert('Please select an image or video');
       return;
     }
+    if(!caption.trim()) {
+      alert('Please enter a caption');
+      return;
+    }
 
     setUploading(true);
 
@@ -103,8 +107,11 @@ const Feed = () => {
       <div></div>
 
       <Modal 
+        wrapClassName="createModal"
         className="createModal"
         open={openModal}
+        onCancel={resetModal}
+        maskClosable={true}
         closeIcon={false}
         footer={null}
         style={{
@@ -129,32 +136,53 @@ const Feed = () => {
                   <video
                     src={previewUrl}
                     controls
-                    className="max-h-64 rounded-xl"
+                    className="max-h-24 rounded-xl"
                   />
                 ) : (
                   <img
                     src={previewUrl}
                     alt="preview"
-                    className="max-h-64 rounded-xl"
+                    className="max-h-24 rounded-xl"
                   />
                 )}
+                <div className="flex flex-row gap-2 items-center w-full max-w-full">
+                  <span className="truncate text-white" style={{
+                    fontSize: '24px',
+                    color: '#fcfcfc',
+                    fontFamily: "Albert Sans, sans-serif",
+                    fontWeight: '500',
+                    lineHeight: '32px',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    display: 'inline-block',
+                    maxWidth: 'calc(100% - 2.5rem)'
+                  }}>{selectedFile.name}</span>
+                </div>
                 <textarea
                   value={caption}
                   onChange={(e) => setCaption(e.target.value)}
                   placeholder="Write a caption..."
                   className="w-full rounded-xl p-3 bg-[#121619] text-white border border-[#2f343a] outline-none"
                   rows={3}
+                  style={{
+                    resize: 'none'
+                  }}
                 />
-                <div className="flex gap-3">
-                  <Button
+                <div className="flex gap-3 h-10 w-full">
+                  <div className="w-1/3 h-full">
+                    <Button
+                    size="default"
                     label={uploading ? 'Posting...' : 'Post'}
                     disabled={uploading}
                     onClick={handleSubmitPost}
                   />
-                  <Button
-                    label="Choose another file"
-                    onClick={handleImageUpload}
-                  />
+                  </div>
+                  <div className="w-2/3 h-full">
+                    <Button
+                      label="Choose another file"
+                      onClick={handleImageUpload}
+                    />
+                  </div>
                 </div>
               </div>
             ) : (
