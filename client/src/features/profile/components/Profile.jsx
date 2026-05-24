@@ -19,7 +19,8 @@ const Profile = () => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    const userData = getUserFromStorage()
+    const userData = getUserFromStorage();
+    console.log('userData', userData);
     setUser(userData)
     setFormData(userData || {})
     setOriginalData(userData || {})

@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import InstaIcon from "../../../assets/icons/InstaIcon.svg";
 import NavigationBar from "./NavigationBar";
 import '../../../styles/index.css';
-
+import { getUserFromStorage } from "../../../utils/authUtils";
+import IC_Video from "../../../assets/icons/IC_Video.svg";
+import IC_Feeling from "../../../assets/icons/IC_Feeling.svg";
+import IC_Image from "../../../assets/icons/IC_Image.svg";
+import IC_Location from "../../../assets/icons/IC_Location.svg";
+import { usePostModal } from "../../../context/PostModalContext";
 const Feed = () => {
+
+  const [user, setUser] = useState(null);
+  const { handleOpenModal } = usePostModal();
+
+  useEffect(() => {
+    const userData = getUserFromStorage();
+    console.log(userData, 'userData');
+    setUser(userData);
+  }, []);
+
   return (
     <div className="w-full h-full overflow-scroll bg-[#0c1014] flex flex-row p-4" style={{
       scrollbarWidth: 'none'
@@ -16,8 +31,80 @@ const Feed = () => {
           <NavigationBar />
         </div>
       </div>
-      <div className="flex"></div>
-      <div></div>
+      <div className="w-[60%] h-full flex flex-col gap-2 px-2">
+        <div onClick={handleOpenModal} className="w-2/3 cursor-pointer flex flex-col h-32 rounded-2xl bg-[#0b0e16] border border-[#15161d]">
+          <div className="flex px-6 py-2 h-1/2 flex-row gap-8 border-b border-b-[#15161d]">
+            <div className="h-11 w-11 flex items-center justify-center object-cover rounded-full">
+              <img src={user?.profilePicture} alt="" style={{
+                height: '100%',
+                width: '100%',
+                objectFit: 'cover',
+                borderRadius: '100%'
+              }} />
+            </div>
+            <div className="w-[calc(100%-44px)] flex items-center">
+              <span style={{
+                fontFamily: 'Albert Sans',
+                fontSize: '16px',
+                fontWeight: '500',
+                color: '#60676e'
+              }}>Create something amazing....</span>
+            </div>
+          </div>
+          <div className="flex flex-row justify-between items-center w-full h-full px-8 py-2">
+            <div className="flex flex-col gap-1 items-center justify-center">
+              <img src={IC_Image} alt="" style={{
+                height: '28px',
+                width: '28px'
+              }}/>
+              <span style={{
+                fontFamily: 'Albert Sans',
+                fontSize: '16px',
+                fontWeight: '500',
+                color: '#fff'
+              }}>Image</span>
+            </div>
+            <div className="flex flex-col gap-1 items-center justify-center">
+              <img src={IC_Video} alt="" style={{
+                height: '28px',
+                width: '28px'
+              }}/>
+              <span style={{
+                fontFamily: 'Albert Sans',
+                fontSize: '16px',
+                fontWeight: '500',
+                color: '#fff'
+              }}>Video</span>
+            </div>
+            <div className="flex flex-col gap-1 items-center justify-center">
+              <img src={IC_Feeling} alt="" style={{
+                height: '28px',
+                width: '28px'
+              }}/>
+              <span style={{
+                fontFamily: 'Albert Sans',
+                fontSize: '16px',
+                fontWeight: '500',
+                color: '#fff'
+              }}>Feeling</span>
+            </div>
+            <div className="flex flex-col gap-1 items-center justify-center">
+              <img src={IC_Location} alt="" style={{
+                height: '28px',
+                width: '28px'
+              }}/>
+              <span style={{
+                fontFamily: 'Albert Sans',
+                fontSize: '16px',
+                fontWeight: '500',
+                color: '#fff'
+              }}>Location</span>
+            </div>
+          </div>
+        </div>
+        {/* <div>posts</div> */}
+      </div>
+      <div className="w-[40%] h-full px-2"></div>
     </div>
   );
 };
