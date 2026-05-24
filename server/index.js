@@ -27,6 +27,7 @@ app.use(cookieParser());
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/posts', require('./routes/post.routes'));
 app.use("/api/otp", require("./routes/otp.routes"));
+app.use('/api/user', require('./routes/user.routes'));
 
 
 

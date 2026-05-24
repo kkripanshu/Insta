@@ -115,6 +115,11 @@ exports.loginUser = async (req, res) => {
                 id: foundUser._id,
                 username: foundUser.username,
                 email: foundUser.email,
+                firstName: foundUser.firstName,
+                lastName: foundUser.lastName,
+                profilePicture: foundUser.profilePicture,
+                dateOfBirth: foundUser.dateOfBirth,
+                mobileNumber: foundUser.mobileNumber,
             },
         });
 

@@ -55,6 +55,12 @@ const RightLoginSection = () => {
       } else {
         console.warn('Login succeeded but token is missing:', result);
       }
+      if (result.user) {
+        localStorage.setItem("user", JSON.stringify(result.user));
+        console.log('User saved:', result.user);
+      } else {
+        console.warn('Login succeeded but user data is missing:', result);
+      }
       pendingRouteRef.current = "/feed";
       pendingMessageRef.current = { type: "success", text: "Login successful!" };
     } catch (error) {
