@@ -8,20 +8,47 @@ import IC_Feeling from "../../../assets/icons/IC_Feeling.svg";
 import IC_Image from "../../../assets/icons/IC_Image.svg";
 import IC_Location from "../../../assets/icons/IC_Location.svg";
 import { usePostModal } from "../../../context/PostModalContext";
+import { fetchFeed, likePost } from '../../posts/post.api'
+import SinglePost from "../../../components/common/SinglePost";
+
+
+
+
 const Feed = () => {
+
+  const [posts, setPosts] = useState([]);
+  const [playingVideoId, setPlayingVideoId] = useState(null);
 
   const [user, setUser] = useState(null);
   const { handleOpenModal } = usePostModal();
 
   useEffect(() => {
     const userData = getUserFromStorage();
+
+    const fetchPosts = async () => {
+      const response = await fetchFeed();
+
+      console.log(response, 'posts response');
+
+      if (response.ok) {
+        setPosts(response.posts);
+      }
+    };
+
+    fetchPosts();
+
     console.log(userData, 'userData');
+
     setUser(userData);
   }, []);
 
+
+
   return (
-    <div className="w-full h-full overflow-scroll bg-[#0c1014] flex flex-row p-4" style={{
-      scrollbarWidth: 'none'
+
+    <div className="w-full h-full bg-[#0c1014] flex flex-row p-4" style={{
+      scrollbarWidth: 'none',
+      overflow: 'hidden'
     }}>
       <div className="flex flex-col py-2 w-auto">
         <div className="w-8 h-8 flex justify-center items-center">
@@ -31,8 +58,8 @@ const Feed = () => {
           <NavigationBar />
         </div>
       </div>
-      <div className="w-[60%] h-full flex flex-col gap-2 px-2">
-        <div onClick={handleOpenModal} className="w-2/3 cursor-pointer flex flex-col h-32 rounded-2xl bg-[#0b0e16] border border-[#15161d]">
+      <div className="w-[60%] overflow-hidden h-full flex flex-col gap-2 px-2">
+        {/* <div onClick={handleOpenModal} className="w-2/3 cursor-pointer flex flex-col h-32 rounded-2xl bg-[#0b0e16] border border-[#15161d]">
           <div className="flex px-6 py-2 h-1/2 flex-row gap-8 border-b border-b-[#15161d]">
             <div className="h-11 w-11 flex items-center justify-center object-cover rounded-full">
               <img src={user?.profilePicture} alt="" style={{
@@ -101,10 +128,21 @@ const Feed = () => {
               }}>Location</span>
             </div>
           </div>
+        </div> */}
+        <div className="w-full flex flex-col h-full overflow-scroll border-2 rounded-2xl border-[#15161d]" style={{
+          scrollbarWidth: 'none'
+        }}>
+          {posts.map((post) => (
+            <SinglePost
+              key={post._id}
+              post={post}
+              playingVideoId={playingVideoId}
+              setPlayingVideoId={setPlayingVideoId}
+            />
+          ))}
         </div>
-        {/* <div>posts</div> */}
       </div>
-      <div className="w-[40%] h-full px-2"></div>
+      <div className="w-[40%] h-full px-2 overflow-hidden"></div>
     </div>
   );
 };

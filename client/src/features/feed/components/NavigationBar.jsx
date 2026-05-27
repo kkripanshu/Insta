@@ -49,8 +49,8 @@ const NavigationBar = () => {
           <div
             key={item.id}
             onClick={() => handleClick(item)}
-            className={`flex gap-4 items-center p-2 cursor-pointer rounded-lg transition duration-300
-              
+            className={`group flex gap-4 items-center p-2 cursor-pointer rounded-lg transition duration-300
+
               ${isActive
                 ? 'bg-[#20215f] text-white'
                 : 'hover:bg-gray-500 text-white'

@@ -2,7 +2,9 @@ import React from 'react'
 import Router from './router'
 const App = () => {
   return (
-    <Router />
+    <div className="h-screen w-screen overflow-hidden">
+      <Router />
+    </div>
   )
 }
 
