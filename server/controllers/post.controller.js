@@ -127,6 +127,7 @@ exports.commentOnPost = async (req, res) => {
         const comment = {
             text,
             postedBy: req.user._id,
+            success: true
         };
         post.comments.push(comment);
         await post.save();

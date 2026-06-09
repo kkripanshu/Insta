@@ -98,7 +98,15 @@ exports.loginUser = async (req, res) => {
             return res.status(400).json({ message: 'Invalid password' });
         }
         // Generate JWT token
-        const token = jwt.sign({ userId: foundUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({
+            userId: foundUser._id,
+            username: foundUser.username,
+            email: foundUser.email,
+            firstName: foundUser.firstName,
+            lastName: foundUser.lastName,
+            dateOfBirth: foundUser.dateOfBirth,
+            mobileNumber: foundUser.mobileNumber,
+        }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         // set JWT token in cookie
         res.cookie('token', token, {

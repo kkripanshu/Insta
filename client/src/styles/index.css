@@ -29,3 +29,16 @@ body {
 .createModal .ant-modal-body {
   padding: 0;
 }
+
+
+.custom-modal:where(.css-dev-only-do-not-override-1d8anct).ant-modal .ant-modal-container{
+  padding: 0;
+}
+
+.commentInput:where(.css-dev-only-do-not-override-1d8anct).ant-input{
+  color: #9ca3af;
+}
+
+.commentInput {
+  --ant-color-text-placeholder: #9ca3af;
+}
