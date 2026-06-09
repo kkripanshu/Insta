@@ -6,7 +6,7 @@ import { Input, Modal } from 'antd';
 import { commentPost } from '../../features/posts/post.api';
 
 
-const SinglePost = ({ post, playingVideoId, setPlayingVideoId }) => {
+const SinglePost = ({ post, playingVideoId = null, setPlayingVideoId = () => {}, modalOnly = false, isOpen = false, onClose = () => {} }) => {
 
     const currentUser = getUserFromStorage();
     const [open, setOpen] = useState(false);
@@ -49,6 +49,9 @@ const SinglePost = ({ post, playingVideoId, setPlayingVideoId }) => {
     };
 
     const handleCancel = () => {
+        if (modalOnly) {
+            onClose();
+        }
         setOpen(false);
         if (modalVideoRef.current) {
             modalVideoRef.current.pause();
@@ -87,6 +90,12 @@ const SinglePost = ({ post, playingVideoId, setPlayingVideoId }) => {
     }, [open]);
 
     useEffect(() => {
+        if (modalOnly) {
+            setOpen(isOpen);
+        }
+    }, [modalOnly, isOpen]);
+
+    useEffect(() => {
         if (!videoRef.current) return;
         const observer = new IntersectionObserver(
             (entries) => {
@@ -112,7 +121,8 @@ const SinglePost = ({ post, playingVideoId, setPlayingVideoId }) => {
 
     return (
         <>
-            <div className='w-auto h-auto px-2 py-2 flex flex-col gap-2 rounded-2xl border border-[#15161d]'>
+            {!modalOnly && (
+                <div className='w-auto h-auto px-2 py-2 flex flex-col gap-2 rounded-2xl border border-[#15161d]'>
                 <div className='flex flex-row justify-between items-center'>
                     <div className='flex flex-row gap-2 items-center'>
                         <div className='w-10 h-10 flex items-center justify-center rounded-full'>
@@ -212,6 +222,7 @@ const SinglePost = ({ post, playingVideoId, setPlayingVideoId }) => {
                     </div>
                 </div>
             </div>
+            )}
             <Modal
                 className="custom-modal"
                 open={open}
@@ -228,11 +239,14 @@ const SinglePost = ({ post, playingVideoId, setPlayingVideoId }) => {
                         backgroundColor: '#40c4cc',
                     },
                     body: {
-                        height: '600px',
-                        overflowY: 'auto', 
+                        // height: '600px',
+                        overflowY: 'hidden', 
                         backgroundColor: '#212328',
                         minWidth: '600px',
-                        maxWidth: '60vw'
+                        maxWidth: '60vw',
+                        height: '95vh',
+                        borderRadius: '10px',
+                        overflow: 'hidden',
                     },
                 }}
             >
