@@ -1,0 +1,577 @@
+/* Reels Container Scrollbar Hide */
+.reels-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+.reels-scroll-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Smooth Snap Scrolling */
+.snap-y {
+  scroll-snap-type: y mandatory;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Video Container */
+.reel-video-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.reel-video-container video,
+.reel-video-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Centered three-column layout for ReelsPost */
+.reel-centered-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.reel-left {
+  color: white;
+}
+
+.reel-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reel-media {
+  width: 560px;
+  max-width: 100%;
+  /* keep video fully visible within viewport to avoid top/bottom cropping */
+  max-height: calc(100vh - 120px);
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 6px;
+  background-color: #000;
+}
+
+/* Modal media sizing to avoid vertical cropping inside the comment modal */
+.reel-modal-media {
+  width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 160px);
+  object-fit: contain;
+  display: block;
+  background-color: #000;
+}
+
+.reel-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Adjust avatar sizing inside left column */
+.reel-user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid white;
+  flex-shrink: 0;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 768px) {
+  .reel-centered-container {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .reel-left, .reel-right {
+    width: 100% !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .reel-media {
+    width: 100%;
+    max-height: 56.25vw;
+  }
+}
+
+/* Action Buttons */
+.reel-actions {
+  position: absolute;
+  right: 24px;
+  bottom: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  z-index: 10;
+}
+
+.reel-action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reel-action-btn:hover {
+  transform: scale(1.15);
+}
+
+.reel-action-btn-icon {
+  font-size: 24px;
+  color: white;
+}
+
+.reel-action-btn-label {
+  font-size: 12px;
+  color: white;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* Post Info Section */
+.reel-post-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4), transparent);
+  z-index: 5;
+}
+
+.reel-user-section {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.reel-user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid white;
+  flex-shrink: 0;
+}
+
+.reel-user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.reel-username {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.follow-btn {
+  margin-left: auto;
+  padding: 6px 16px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.follow-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.reel-caption {
+  color: white;
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+/* Comment Modal */
+.reels-comment-modal .ant-modal-content {
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #212328;
+  padding: 0;
+}
+
+.reels-comment-modal .ant-modal-body {
+  height: 600px;
+  overflow-y: auto;
+  background-color: #212328;
+  min-width: 600px;
+  max-width: 60vw;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: row;
+}
+
+/* antd Modal Container - Padding Override */
+.reels-comment-modal-container .ant-modal-content {
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #212328;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.reels-comment-modal-container .ant-modal-body {
+  height: 600px;
+  overflow-y: auto;
+  background-color: #212328;
+  min-width: 600px;
+  max-width: 60vw;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex;
+  flex-direction: row;
+}
+
+.reels-comment-modal-container .ant-modal-header {
+  padding: 0 !important;
+  margin: 0 !important;
+  border-bottom: none !important;
+}
+
+.reels-comment-modal-container .ant-modal-close {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Modal Scrollbar Styling */
+.reels-comment-modal .ant-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.reels-comment-modal .ant-modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.reels-comment-modal .ant-modal-body::-webkit-scrollbar-thumb {
+  background: #4a4a4a;
+  border-radius: 3px;
+}
+
+.reels-comment-modal .ant-modal-body::-webkit-scrollbar-thumb:hover {
+  background: #5a5a5a;
+}
+
+/* Comments Section */
+.comments-section {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #212328;
+  overflow: hidden;
+}
+
+.comments-header {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #353535;
+  flex-shrink: 0;
+}
+
+.comments-header-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.comments-header-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.comment-user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.comment-username {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+}
+
+.comment-user-bio {
+  color: #a0a0a0;
+  font-size: 12px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Comments List */
+.comments-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+}
+
+.comments-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.comments-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.comments-list::-webkit-scrollbar-thumb {
+  background: #4a4a4a;
+  border-radius: 3px;
+}
+
+.comment-item {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.comment-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.comment-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.comment-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.comment-username-text {
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline;
+}
+
+.comment-text {
+  color: #d0d0d0;
+  font-size: 13px;
+  margin-top: 4px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.comments-empty {
+  color: #808080;
+  font-size: 14px;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Comment Input */
+.comment-input-section {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  padding: 12px 16px;
+  border-top: 1px solid #353535;
+  flex-shrink: 0;
+  background-color: #1a1a1f;
+  min-height: 56px;
+}
+
+.commentInput input {
+  background-color: transparent !important;
+  color: white !important;
+  font-size: 14px !important;
+  border: none !important;
+  outline: none !important;
+  padding: 0 !important;
+}
+
+.commentInput input::placeholder {
+  color: #808080 !important;
+}
+
+.comment-post-btn {
+  color: #0095f6;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 8px 12px;
+  border: none;
+  background: none;
+}
+
+.comment-post-btn:hover:not(:disabled) {
+  color: #00b0ff;
+}
+
+.comment-post-btn:disabled {
+  color: #404040;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .reels-comment-modal .ant-modal-body {
+    min-width: 500px;
+    max-width: 90vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .reel-actions {
+    right: 16px;
+    bottom: 64px;
+    gap: 20px;
+  }
+
+  .reel-post-info {
+    padding: 16px;
+  }
+
+  .reel-action-btn-icon {
+    font-size: 20px;
+  }
+
+  .reel-action-btn-label {
+    font-size: 11px;
+  }
+
+  .reels-comment-modal .ant-modal-body {
+    flex-direction: column;
+    min-width: auto;
+    max-width: 100vw;
+    height: auto;
+    max-height: 90vh;
+  }
+
+  .comments-section {
+    width: 100%;
+  }
+
+  .reel-video-container {
+    height: 56.25vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .reel-actions {
+    right: 12px;
+    bottom: 48px;
+    gap: 16px;
+  }
+
+  .reel-action-btn-icon {
+    font-size: 18px;
+  }
+
+  .reel-action-btn-label {
+    font-size: 10px;
+  }
+
+  .follow-btn {
+    padding: 4px 12px;
+    font-size: 12px;
+  }
+
+  .reel-caption {
+    font-size: 12px;
+  }
+
+  .reel-username {
+    font-size: 12px;
+  }
+}
+
+/* Loading Spinner */
+.loader {
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top: 4px solid white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Modal Mask */
+.reels-comment-modal .ant-modal-mask {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+/* antd Modal padding fix */
+.reels-comment-modal .ant-modal-content {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.reels-comment-modal-container:where(.css-dev-only-do-not-override-1d8anct).ant-modal .ant-modal-container {
+  padding: 0;
+}
