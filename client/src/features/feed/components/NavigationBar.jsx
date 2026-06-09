@@ -33,8 +33,8 @@ const NavigationBar = () => {
     { id: 2, icon: IC_Reel, label: 'Reels', type: 'route', Path: '/reels' },
     { id: 3, icon: IC_Message, label: 'Message', type: 'route', Path: '/messages' },
     { id: 4, icon: IC_Search, label: 'Search', type: 'route', Path: '/search' },
-    { id: 5, icon: IC_Explore, label: 'Explore', type: 'route', Path: '/explore' },
-    { id: 6, icon: IC_Notification, label: 'Notifications', type: 'route', Path: '/notifications' },
+    // { id: 5, icon: IC_Explore, label: 'Explore', type: 'route', Path: '/explore' },
+    // { id: 6, icon: IC_Notification, label: 'Notifications', type: 'route', Path: '/notifications' },
     { id: 7, icon: IC_Add, label: 'Add', type: 'modal' },
     { id: 8, icon: IC_Profile, label: 'Profile', type: 'route', Path: '/profile' }
   ];
